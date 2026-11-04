@@ -104,7 +104,7 @@ module.exports = function (router) {
     async function handleGetId(Model, req, res) {
         try {
             var select = await req.query.select === undefined ? {} : JSON.parse(req.query.select);
-            var q_res = Model.findById(req.params.id).select(select)
+            var q_res = await Model.findById(req.params.id).select(select)
             if (q_res) {
                 return res.status(200).json({
                     message: "OK",
@@ -360,7 +360,7 @@ module.exports = function (router) {
 
     taskRoute.post( async function (req, res) {
         try {
-            validateTaskFields(req.body);
+            taskFieldVal(req.body);
             var task = new Task({
                 name: req.body.name,
                 deadline: req.body.deadline,
