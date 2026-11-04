@@ -410,7 +410,7 @@ module.exports = function (router) {
                 if (!task) throw httpError(404, "Task not found");
 
                 var body = req.body || {};
-                validateTaskFields(body);
+                await taskFieldVal(body);
                 task.name = body.name;
                 task.deadline = body.deadline;
                 task.description = body.description === undefined ? "" : body.description;
@@ -428,7 +428,7 @@ module.exports = function (router) {
             });
         }
         catch (e) {
-        console.error("PUT /tasks error:", e);
+           console.error("PUT /tasks error:", e)
            var status = e.status ||
             (e.name === "ValidationError" || e.name === "CastError" ? 400 : 500);
 
