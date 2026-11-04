@@ -428,6 +428,7 @@ module.exports = function (router) {
             });
         }
         catch (e) {
+        console.error("PUT /tasks error:", e);
            var status = e.status ||
             (e.name === "ValidationError" || e.name === "CastError" ? 400 : 500);
 
