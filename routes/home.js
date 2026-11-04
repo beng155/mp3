@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Task = require('../models/task');
+var mongoose = require('mongoose');
 
 module.exports = function (router) {
 
